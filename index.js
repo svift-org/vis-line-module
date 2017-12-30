@@ -22,13 +22,23 @@ SVIFT.vis.line = (function (data, container) {
   module.setup = function () {
 
 
-    var margin = {top: 40, right: 40, bottom: 40, left: 40},
-        width = module.container.node().offsetWidth - ((module.config.margin.left + module.config.margin.right)*2),
-        height = 500 - margin.top - margin.bottom;
-        //Sizes
-    // var windowWidth = module.container.node().offsetWidth - module.config.margin.left - module.config.margin.right;
-    // var vizHeight = module.container.node().offsetHeight - module.config.margin.top - module.config.margin.bottom - module.config.topTextHeight - module.config.bottomTextHeight;
-    // var maxSize = Math.min(windowWidth,vizHeight);
+  };
+
+  //Data Processing, after module.data is set, module.process() should process the data
+  module.process = function () {
+  };
+
+  //Update should do the drawing, similar to Bostock's general update pattern
+  module.update = function () {
+  };
+
+  //After window resize events this is being called, in most cases, this should call the update event after setting width and height
+  module.resize = function () {
+
+
+    var width = module.container.node().offsetWidth - ((module.config.margin.left + module.config.margin.right)*2);
+    var height =  module.container.node().offsetHeight - module.config.margin.top - module.config.margin.bottom - module.config.topTextHeight - module.config.bottomTextHeight;
+
 
     //Extents
     var xExtent = [1,data.data.data.length];
@@ -48,12 +58,13 @@ SVIFT.vis.line = (function (data, container) {
         .range([height, 0]);
 
 
+
     var svg = module.g.append("g")
         .datum(data.data.data)
         .attr("width", width)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("height", height)
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(0," + (module.config.margin.top + module.config.topTextHeight) + ")");
 
     //X Axis
     svg.append("g")
@@ -126,18 +137,6 @@ SVIFT.vis.line = (function (data, container) {
       
 
 
-  };
-
-  //Data Processing, after module.data is set, module.process() should process the data
-  module.process = function () {
-  };
-
-  //Update should do the drawing, similar to Bostock's general update pattern
-  module.update = function () {
-  };
-
-  //After window resize events this is being called, in most cases, this should call the update event after setting width and height
-  module.resize = function () {
   };
 
   module.timeline = {};
