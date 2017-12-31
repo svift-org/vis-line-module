@@ -66,6 +66,7 @@ SVIFT.vis.line = (function (data, container) {
         .append("g")
         .attr("transform", "translate(0," + (module.config.margin.top + module.config.topTextHeight) + ")");
 
+        console.log(data.data.data.length)
     //X Axis
     svg.append("g")
         .attr("class", "axis axis--x")
@@ -73,7 +74,7 @@ SVIFT.vis.line = (function (data, container) {
         .call(
           d3.axisBottom(x)
           .tickFormat(function(d,i){return data.data.data[i].label })
-          .ticks(2)
+          .ticks(data.data.data.length-1)
         );
 
     //Y Axis
