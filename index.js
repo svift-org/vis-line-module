@@ -66,7 +66,6 @@ SVIFT.vis.line = (function (data, container) {
         .append("g")
         .attr("transform", "translate(0," + (module.config.margin.top + module.config.topTextHeight) + ")");
 
-        console.log(data.data.data.length)
     //X Axis
     svg.append("g")
         .attr("class", "axis axis--x")
@@ -102,7 +101,7 @@ SVIFT.vis.line = (function (data, container) {
 
       var lineDarwn = svg.append("path")
           .attr("fill", "none")
-          .attr("stroke", lineColors[i])
+          .attr("stroke", data.data.colors[i])
           .attr("stroke-linejoin", "round")
           .attr("stroke-linecap", "round")
           .attr("stroke-width", 3.5)
