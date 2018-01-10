@@ -90,14 +90,14 @@ SVIFT.vis.line = (function (data, container) {
 
 
     //Add lines and animation
-    var lineColors = ["red","blue","green","yellow","pink","steelblue"]
+
     for (var i = 0; i < data.data.data[0].data.length; i++) {
 
       var line = d3.line()
           .defined(function(d) {return d.data[i]; }) //for null values
           .x(function(d,i) { return x(i+1); })
           .y(function(d) { return y(d.data[i]); })
-          .curve(d3.curveCatmullRom.alpha(0.5)); //curve
+          // .curve(d3.curveCatmullRom.alpha(0.5)); //curve
 
       var lineDarwn = svg.append("path")
           .attr("fill", "none")
